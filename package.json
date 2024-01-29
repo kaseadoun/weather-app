@@ -1,8 +1,8 @@
 {
+  "homepage": "https://kaseadoun.github.io/weather-app/",
   "name": "weather-app",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://kaseadoun.github.io/weather-app/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
