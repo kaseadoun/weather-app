@@ -49,10 +49,12 @@ function App() {
   }
 
   return (
-    <>
+    <div className="mainContainer">
       <header>
         <h1>Weather App</h1>
-        <button onClick={changeMetric}>Change Metric</button>
+        <button onClick={changeMetric}>
+          {isCelsius ? '°C' : '°F'}
+        </button>
       </header>
       <SearchBar
         search={search}
@@ -60,8 +62,9 @@ function App() {
         searchCity={searchCity}
       />
       {loading && <h2>Looking at the sky. Please wait.</h2>}
-      {(!loading && forecast.length !== 0) && 
+      {(!loading && forecast.length !== 0) &&
         <WeatherCard
+          className="weatherCardComponent"
           location={location}
           current={current}
           currentCondition={currentCondition}
@@ -69,7 +72,7 @@ function App() {
           isCelsius={isCelsius}
         />
       }
-    </>
+    </div>
   )
 }
 
