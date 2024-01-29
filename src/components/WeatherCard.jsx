@@ -3,7 +3,7 @@ import Forecast from "./Forecast";
 
 const WeatherCard = ({ location, current, currentCondition, forecast, isCelsius }) => {
   return (
-    <div>
+    <div className="weatherCardContainer">
         <h2>{ location["name"] }</h2>
         <CurrentWeather 
             current={current}

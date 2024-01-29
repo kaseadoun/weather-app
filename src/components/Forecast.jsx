@@ -1,8 +1,8 @@
 const Forecast = ({ forecast, isCelsius }) => {
   return (
     <div className="forecastContainer">
-      <div>
-        <h4>Next Day:</h4>
+      <div className="nextDayContainer">
+        <h4>Next Day</h4>
         <h5>{forecast[1]["date"]}</h5>
         <img src={forecast[1]["day"]["condition"]["icon"]} />
         {isCelsius ?
@@ -16,8 +16,8 @@ const Forecast = ({ forecast, isCelsius }) => {
           </div>
         }
       </div>
-      <div>
-        <h4>In 2 Days:</h4>
+      <div className="dayAfterContainer">
+        <h4>In 2 Days</h4>
         <h5>{forecast[2]["date"]}</h5>
         <img src={forecast[2]["day"]["condition"]["icon"]} />
         {isCelsius ?

@@ -1,6 +1,6 @@
 const SearchBar = ({ setSearch, searchCity }) => {
     return (
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form className="searchBarComponent" onSubmit={(e) => e.preventDefault()}>
             <input
                 type="text" 
                 placeholder="Enter a City"
