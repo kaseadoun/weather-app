@@ -15,7 +15,7 @@ function App() {
   const [forecast, setForecast] = useState([]);
 
   const apiKey = import.meta.env.VITE_WEATHERAPI_API_KEY;
-  const url = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}`;
+  const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}`;
 
   useEffect(() => {
     return () => {
