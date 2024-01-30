@@ -3,11 +3,12 @@ const SearchBar = ({ setSearch, searchCity }) => {
         <form className="searchBarComponent" onSubmit={(e) => e.preventDefault()}>
             <input
                 type="text" 
-                placeholder="Enter a City"
+                placeholder={`🔍 Search City`}
+                id="search"
                 onChange={(e) => setSearch(e.target.value)} 
                 required 
             />
-            <button type="submit" onClick={() => searchCity()}>Submit</button>
+            <button id="searchButton" type="submit" onClick={() => searchCity()}></button>
         </form>
     )
 }

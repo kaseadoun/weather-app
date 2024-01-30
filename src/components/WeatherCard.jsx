@@ -3,19 +3,21 @@ import Forecast from "./Forecast";
 
 const WeatherCard = ({ location, current, currentCondition, forecast, isCelsius }) => {
   return (
-    <div className="weatherCardContainer">
-        <h2>{ location["name"] }</h2>
-        <CurrentWeather 
-            current={current}
-            currentCondition={currentCondition}
-            forecast={forecast} 
-            isCelsius={isCelsius}
+    <>
+      <h2>{location["name"]}, {location["region"] ? location["region"] : location["country"]}</h2>
+      <div className="currentAndForecast">
+        <CurrentWeather
+          current={current}
+          currentCondition={currentCondition}
+          forecast={forecast}
+          isCelsius={isCelsius}
         />
-        <Forecast 
-            forecast={forecast} 
-            isCelsius={isCelsius}
+        <Forecast
+          forecast={forecast}
+          isCelsius={isCelsius}
         />
-    </div>
+      </div>
+    </>
   )
 }
 
