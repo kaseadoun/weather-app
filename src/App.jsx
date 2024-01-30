@@ -8,6 +8,7 @@ import './App.css'
 function App() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(null);
   const [isCelsius, setIsCelsius] = useState(true);
   const [location, setLocation] = useState(null);
   const [current, setCurrent] = useState(null);
@@ -52,25 +53,26 @@ function App() {
     <div className="mainContainer">
       <header>
         <h1>Weather App</h1>
-        <button onClick={changeMetric}>
-          {isCelsius ? '°C' : '°F'}
-        </button>
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+          searchCity={searchCity}
+        />
       </header>
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-        searchCity={searchCity}
-      />
       {loading && <h2>Looking at the sky. Please wait.</h2>}
       {(!loading && forecast.length !== 0) &&
-        <WeatherCard
-          className="weatherCardComponent"
-          location={location}
-          current={current}
-          currentCondition={currentCondition}
-          forecast={forecast}
-          isCelsius={isCelsius}
-        />
+        <div className="weatherCardContainer">
+          <button id="metricChange" onClick={changeMetric}>
+            {isCelsius ? '°C' : '°F'}
+          </button>
+          <WeatherCard
+            location={location}
+            current={current}
+            currentCondition={currentCondition}
+            forecast={forecast}
+            isCelsius={isCelsius}
+          />
+        </div>
       }
     </div>
   )
