@@ -1,5 +1,6 @@
 import SearchBar from './components/SearchBar';
 import WeatherCard from './components/WeatherCard';
+import PrecipitationChart from './components/PrecipitationChart';
 import { useState, useEffect } from 'react'
 import './App.css'
 
@@ -8,12 +9,12 @@ import './App.css'
 function App() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(null);
   const [isCelsius, setIsCelsius] = useState(true);
   const [location, setLocation] = useState(null);
   const [current, setCurrent] = useState(null);
   const [currentCondition, setCurrentCondition] = useState(null);
   const [forecast, setForecast] = useState([]);
+  const [chartData, setChartData] = useState(null);
 
   const apiKey = import.meta.env.VITE_WEATHERAPI_API_KEY;
   const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}`;
@@ -33,6 +34,23 @@ function App() {
       setLocation({ ...data["location"] });
       setCurrent({ ...data["current"] });
       setCurrentCondition({ ...data["current"]["condition"] });
+
+      setChartData(() => {
+        const labels = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+        const label = `${data["location"]}`;
+        const hourlyPrecipitation = data["forecast"]["forecastday"][0]["hour"].map(data => data["chance_of_rain"]);
+
+        return {
+          labels: labels,
+          datasets: [
+            {
+              label: label,
+              data: hourlyPrecipitation
+            }
+          ]
+        }
+      })
+
       setLoading(true);
     } catch (err) {
       console.error(`Error: ${err}`);
@@ -72,6 +90,7 @@ function App() {
             forecast={forecast}
             isCelsius={isCelsius}
           />
+          <PrecipitationChart chartData={chartData} location={location} />
         </div>
       }
     </div>
