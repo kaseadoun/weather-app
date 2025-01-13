@@ -25,7 +25,7 @@ function App() {
     }
   }, [forecast, location, current, currentCondition, isCelsius])
 
-  const searchCity = async () => {
+  const searchCityById = async (cityId) => {
     try {
       const response = await fetch(`${url}&q=${search}&days=3&aqi=no&alerts=no`);
       const data = await response.json();
@@ -74,7 +74,7 @@ function App() {
         <SearchBar
           search={search}
           setSearch={setSearch}
-          searchCity={searchCity}
+          searchCityById={searchCityById}
         />
       </header>
       {loading && <h2>Looking at the sky. Please wait.</h2>}
