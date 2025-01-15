@@ -6,10 +6,8 @@ const SearchBar = ({ search, setSearch, searchCityById }) => {
   const [listOfSearch, setListOfSearch] = useState([]);
 
   useEffect(() => {
-    if (searchCityById) {
-      searchCityById(search); // Runs whenever `search` updates
-    }
-  }, [searchCityById]);
+    searchCityById(search); // Runs whenever `search` updates
+  }, [search]);
 
   function handleOnFocus() {
     setIsFocused(true);
