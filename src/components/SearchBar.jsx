@@ -78,6 +78,7 @@ const SearchBar = ({ search, setSearch, searchCityById }) => {
           onClick={() => {
             setSearch(searchText);
             searchCityById(search);
+            handleOnBlur();
           }}
         ></button>
       </form>
