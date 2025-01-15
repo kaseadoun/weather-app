@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&display=swap');
 
-* {
+/* -------------------- GENERAL STYLING */
+*{
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Rubik', sans-serif;
@@ -16,11 +18,215 @@ h6 {
     font-weight: 500;
 }
 
+/* -------------------- BODY AND MAIN CONTAINER */
 body {
+    background-color: #6d7cd1;
+    margin: 20px;
+    min-height: 100vh;
+}
+
+.mainContainer {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+/* -------------------- HEADER (Search Bar) */
+header {
+    width: 100%;
+    width: 100%;
+}
+
+.searchBarContainer {
+    position: relative;
+}
+
+.searchBarComponent {
     display: flex;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin-top: 5px;
+    z-index: 2;
+}
+.searchBarComponent input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px grey solid;
+    padding: 2px 5px;
+}
+#searchButton {
+    display: none;
+}
+
+.autocompleteSearchResultsContainer {
+    position: absolute;
+    border-radius: 0 0 5px 5px;
+    top: 90%;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.autocompleteSearchResults {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: lightgrey;
+    list-style: none;
+    cursor: pointer;
+    vertical-align: middle;
+    padding-left: 5px;
+    font-size: 0.75rem;
+
+}
+.autocompleteSearchResults:nth-of-type(even) {
+    background-color: white;
+}
+.autocompleteSearchResults:first-child {
+    height: 45px;
+    padding-top: 5px;
+}
+.autocompleteSearchResults:last-child {
+    border-radius: 0 0 5px 5px;
+}
+
+/* -------------------- WEATHER CARD */
+
+/* .mainContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 30vw;
+    height: 100%;
+    min-width: 500px;
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.weatherCardContainer>*,
+.currentWeatherContainer {
+    margin-bottom: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.searchBarComponent {
+    display: flex;
+    height: 100%;
+    width: 50%;
+    min-height: 20px;
+    max-height: 30px;
+    min-width: 200px;
+    align-items: center;
+    position: relative;
+}
+.searchBarContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.autocompleteSearchResults {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    cursor: pointer;
+}
+.autocompleteSearchResultsContainer {
+    display: none;
+    position: absolute;
+    top: 30px;
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+#search {
+    border-radius: 5px;
+    min-height: 20px;
+    height: 80%;
+    width: 100%;
+    border: solid lightgrey 3px;
+    padding: 5px 10px;
+}
+#searchButton {
+    opacity: 0;
+}
+
+.weatherCardContainer{
+    position: relative;
+}
+#metricChange {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 20px;
+    right: 0;
+    top: 0;
+}
+
+.currentAndForecast {
+    display: flex;
+    align-items: center;
+}
+
+.currentWeatherContainer {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    height: 10vh;
+    min-width: 300px;
+    min-height: 100px;
+    margin-right: 20px;
+}
+.currentTempAndIcon {
+    display: flex;
+    margin-right: 30px;
+}
+#currentTemp {
+    position: relative;
+    font-size: 60px;
+    font-weight: 500;
+}
+.currentMetric {
+    position: absolute;
+    top: 100;
+    font-size: 20px;
+}
+
+.forecastContainer {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+.forecast {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: #6d7cd1;
+    margin-right: 20px;
+    min-width: 50px;
+    max-width: 80px;
+    min-height: 50px;
+    max-height: 80px;
 }
+.forecastTemps {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.weatherIcon {
+    margin-right: 10px;
+} */

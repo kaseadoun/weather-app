@@ -2,7 +2,7 @@ import SearchBar from './components/SearchBar';
 import WeatherCard from './components/WeatherCard';
 import PrecipitationChart from './components/PrecipitationChart';
 import { useState, useEffect } from 'react'
-import './App.css'
+import './index.css'
 
 // npm run dev - to run server
 
