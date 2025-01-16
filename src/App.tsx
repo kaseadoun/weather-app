@@ -1,6 +1,6 @@
-import SearchBar from './components/SearchBar';
-import WeatherCard from './components/WeatherCard';
-import PrecipitationChart from './components/PrecipitationChart';
+import SearchBar from './components/form/SearchBar';
+import WeatherCard from './components/weather_card/WeatherCard';
+import PrecipitationChart from './components/weather_card/PrecipitationChart';
 import { useState, useEffect } from 'react'
 import './index.css'
 
