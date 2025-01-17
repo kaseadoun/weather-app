@@ -22,10 +22,12 @@ h6 {
 body {
     background-color: #6d7cd1;
     margin: 20px;
-    min-height: 100vh;
 }
 
 .mainContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     height: 100%;
     width: 100%;
     padding: 20px;
@@ -94,6 +96,36 @@ header {
 }
 
 /* -------------------- WEATHER CARD */
+.weatherCardHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+#metricChange {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+
+/* -------------------- CURRENT WEATHER COMPONENT */
+.currentTempAndIcon {
+    display: flex;
+    margin-right: 30px;
+}
+#currentTemp {
+    position: relative;
+    font-size: 60px;
+    font-weight: 500;
+}
+.currentMetric {
+    position: absolute;
+    top: 100;
+    font-size: 20px;
+}
+
 
 /* .mainContainer {
     display: flex;
