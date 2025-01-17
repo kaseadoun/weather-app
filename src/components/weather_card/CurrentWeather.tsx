@@ -1,6 +1,6 @@
-const CurrentWeather = ({ current, currentCondition, forecast, isCelsius }) => {
-    const currentC = Math.round(current["temp_c"]);
-    const currentF = Math.round(current["temp_f"]);
+const CurrentWeather = ({ currentWeather, forecast, isCelsius }) => {
+    const currentC = Math.round(currentWeather["temp_c"]);
+    const currentF = Math.round(currentWeather["temp_f"]);
     const currentHighestC = Math.round(forecast[0]["day"]["maxtemp_c"]);
     const currentHighestF = Math.round(forecast[0]["day"]["maxtemp_f"]);
     const currentLowestC = Math.round(forecast[0]["day"]["mintemp_c"]);
@@ -11,7 +11,7 @@ const CurrentWeather = ({ current, currentCondition, forecast, isCelsius }) => {
             <h3>Today - {forecast[0]["date"]}</h3>
             <div className="currentWeatherContainer">
                 <div className="currentTempAndIcon">
-                    <img className="weatherIcon" src={currentCondition.icon} />
+                    <img className="weatherIcon" src={currentWeather.condition.icon} />
                     <p id="currentTemp">
                         {isCelsius ? (
                             <>

@@ -1,29 +1,76 @@
 import { useState, useEffect } from "react";
 
-const SearchBar = ({ search, setSearch, searchCityById }) => {
-  const [isFocused, setIsFocused] = useState(false);
-  const [searchText, setSearchText] = useState("");
-  const [listOfSearch, setListOfSearch] = useState([]);
+const SearchBar = ({ setLoading, setLocation, setCurrentWeather, setForecast }) => {
+  const [search, setSearch] = useState<string>('');
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [searchText, setSearchText] = useState<string>("");
+  const [listOfSearch, setListOfSearch] = useState<object[]>([]);
+
+  const apiKey = import.meta.env.VITE_WEATHERAPI_API_KEY;
+  const baseUrl = "https://api.weatherapi.com/v1/";
 
   useEffect(() => {
-    searchCityById(search); // Runs whenever `search` updates
-  }, [search]);
+    searchCityById(search);
+  }, [search, location]);
 
-  function handleOnFocus() {
+  const searchCityById = async (cityId: string) => {
+    try {
+      const response = await fetch(`${baseUrl}/forecast.json?key=${apiKey}&q=${cityId}&days=3&aqi=no&alerts=no`);
+      const data = await response.json();
+      console.log(data);
+
+      setLocation({
+        name: data["location"]["name"],
+        region: data["location"]["region"] ?? undefined,
+        country: data["location"]["country"],
+      });
+
+      setCurrentWeather({
+        temp_c: data["current"]["temp_c"],
+        temp_f: data["current"]["temp_f"],
+        condition: {
+          text: data["current"]["condition"]["text"],
+          icon: data["current"]["condition"]["icon"]
+        }
+      });
+
+      setForecast(
+        data["forecast"]["forecastday"].map((day: any) => ({
+          data: day["date"],
+          day: {
+            maxtemp_c: day["day"]["maxtemp_c"],
+            maxtemp_f: day["day"]["maxtemp_f"],
+            mintemp_c: day["day"]["mintemp_c"],
+            mintemp_f: day["day"]["mintemp_f"],
+          },
+          hour: day["hour"].map((hour: any) => ({
+            temp_c: hour["temp_c"],
+            temp_f: hour["temp_f"],
+            chance_of_rain: hour["chance_of_rain"]
+          }))
+        }))
+      );
+
+      setLoading(true);
+    } catch (err) {
+      console.error(`Error: ${err}`);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function handleOnFocus(): void {
     setIsFocused(true);
   }
 
-  function handleOnBlur() {
+  function handleOnBlur(): void {
     setIsFocused(false);
   }
 
-  const api_key = import.meta.env.VITE_WEATHERAPI_API_KEY;
-  const base_url = "https://api.weatherapi.com/v1/";
-
-  async function searching(citySearched) {
+  async function searching(citySearched: string) {
     try {
       const response = await fetch(
-        `${base_url}search.json?key=${api_key}&q=${citySearched}`
+        `${baseUrl}search.json?key=${apiKey}&q=${citySearched}`
       );
       const data = await response.json();
 
@@ -49,7 +96,7 @@ const SearchBar = ({ search, setSearch, searchCityById }) => {
         const selectedCityId = `id:${item.id}`;
         setSearch(selectedCityId);
         searchCityById(selectedCityId);
-        setIsFocused(() => handleOnBlur());
+        setIsFocused(handleOnBlur);
       }}
       className="autocompleteSearchResults"
     >
