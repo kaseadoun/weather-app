@@ -1,6 +1,6 @@
 import SearchBar from './components/form/SearchBar';
 import WeatherCard from './components/weather_card/WeatherCard';
-// import PrecipitationChart from './components/weather_card/PrecipitationChart';
+import PrecipitationChart from './components/weather_card/PrecipitationChart';
 import { useState, useEffect } from 'react'
 import { WeatherData, Location, CurrentWeather, CurrentWeatherCondition, ForecastDay } from './types/interfaces';
 import './index.css'
@@ -8,17 +8,10 @@ import './index.css'
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
-  const [isCelsius, setIsCelsius] = useState<boolean>(true);
   const [location, setLocation] = useState<Location | undefined>(undefined);
   const [currentWeather, setCurrentWeather] = useState<CurrentWeather | undefined>(undefined);
   const [forecast, setForecast] = useState<ForecastDay[]>([]);
   const [chartData, setChartData] = useState<Object>({});
-
-  useEffect(() => {
-    return () => {
-      setLoading(false);
-    }
-  }, [isCelsius])
 
   // const searchCityById = async (cityId: string) => {
   //   try {
@@ -54,14 +47,6 @@ function App() {
   //   }
   // }
 
-  const changeMetric = () => {
-    if (isCelsius) {
-      setIsCelsius(false);
-      return;
-    }
-    setIsCelsius(true);
-  }
-
   return (
     <div className="mainContainer">
       <header>
@@ -70,22 +55,19 @@ function App() {
           setLocation={setLocation}
           setCurrentWeather={setCurrentWeather}
           setForecast={setForecast}
+          setChartData={setChartData}
           setLoading={setLoading}
         />
       </header>
       {loading && <h2>Looking at the sky. Please wait.</h2>}
       {(!loading && location !== undefined) ?
         (<div className="weatherCardContainer">
-          <button id="metricChange" onClick={changeMetric}>
-            {isCelsius ? '°C' : '°F'}
-          </button>
           <WeatherCard
             location={location}
             currentWeather={currentWeather}
             forecast={forecast}
-            isCelsius={isCelsius}
           />
-          {/* <PrecipitationChart chartData={chartData} location={location} /> */}
+          <PrecipitationChart chartData={chartData} location={location} />
         </div>) : (
           <div>Empty</div>
         )

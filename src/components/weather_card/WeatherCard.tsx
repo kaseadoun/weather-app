@@ -1,11 +1,34 @@
+import { useState, useEffect } from 'react'
 import CurrentWeather from "./CurrentWeather";
 import Forecast from "./Forecast";
 
-const WeatherCard = ({ location, currentWeather, forecast, isCelsius }) => {
+const WeatherCard = ({ location, currentWeather, forecast }) => {
+  const [isCelsius, setIsCelsius] = useState<boolean>(true);
+
+  useEffect(() => {
+
+  }, [isCelsius])
+
+  const changeMetric = () => {
+    if (isCelsius) {
+      setIsCelsius(false);
+      return;
+    }
+    setIsCelsius(true);
+  }
+
   return (
     <>
-      <h2>{location["name"]},</h2>
-      <h3>{location["region"] ? `${location["region"]}, ${location["country"]}` : location["country"]}</h3>
+      <div className="weatherCardHeader">
+        <div>
+          <h2>{location["name"].toUpperCase()}</h2>
+          <h3>{location["region"] ? `${location["region"]}, ${location["country"]}` : location["country"]}</h3>
+        </div>
+        <button id="metricChange" onClick={changeMetric}>
+          {isCelsius ? '°C' : '°F'}
+        </button>
+      </div>
+
       <div className="currentAndForecast">
         {location !== undefined &&
           <>

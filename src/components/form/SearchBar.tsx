@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const SearchBar = ({ setLoading, setLocation, setCurrentWeather, setForecast }) => {
+const SearchBar = ({ setLoading, setLocation, setCurrentWeather, setForecast, setChartData }) => {
   const [search, setSearch] = useState<string>('');
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [searchText, setSearchText] = useState<string>("");
@@ -34,22 +34,23 @@ const SearchBar = ({ setLoading, setLocation, setCurrentWeather, setForecast }) 
         }
       });
 
-      setForecast(
-        data["forecast"]["forecastday"].map((day: any) => ({
-          data: day["date"],
-          day: {
-            maxtemp_c: day["day"]["maxtemp_c"],
-            maxtemp_f: day["day"]["maxtemp_f"],
-            mintemp_c: day["day"]["mintemp_c"],
-            mintemp_f: day["day"]["mintemp_f"],
-          },
-          hour: day["hour"].map((hour: any) => ({
-            temp_c: hour["temp_c"],
-            temp_f: hour["temp_f"],
-            chance_of_rain: hour["chance_of_rain"]
-          }))
-        }))
-      );
+      setForecast(data["forecast"]["forecastday"]);
+
+      setChartData(() => {
+        const labels: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+        const label = `${data["location"]}`;
+        const hourlyPrecipitation: number[] = data["forecast"]["forecastday"][0]["hour"].map((data) => data["chance_of_rain"]);
+
+        return {
+          labels: labels,
+          datasets: [
+            {
+              label: label,
+              data: hourlyPrecipitation
+            }
+          ]
+        }
+      })
 
       setLoading(true);
     } catch (err) {
