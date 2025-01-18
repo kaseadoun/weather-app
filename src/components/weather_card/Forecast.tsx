@@ -1,3 +1,5 @@
+import { formatDate } from "../../utils/formateDate";
+
 const Forecast = ({ forecast, isCelsius }) => {
   const nextDayHighestC = Math.round(forecast[1]["day"]["maxtemp_c"]);
   const nextDayHighestF = Math.round(forecast[1]["day"]["maxtemp_f"]);
@@ -12,8 +14,8 @@ const Forecast = ({ forecast, isCelsius }) => {
     <div className="forecastContainer">
       <div className="forecast">
         <h4>Next Day</h4>
-        <h5>{forecast[1]["date"]}</h5>
-        <img className="weatherIcon" src={forecast[1]["day"]["condition"]["icon"]} />
+        <h5>{formatDate(forecast[1]["date"])}</h5>
+        <img className="forecastWeatherIcon" src={forecast[1]["day"]["condition"]["icon"]} />
         {isCelsius ?
           <div className="forecastTemps">
             <p>{nextDayLowestC}°C</p>
@@ -27,8 +29,8 @@ const Forecast = ({ forecast, isCelsius }) => {
       </div>
       <div className="forecast">
         <h4>In 2 Days</h4>
-        <h5>{forecast[2]["date"]}</h5>
-        <img className="weatherIcon" src={forecast[2]["day"]["condition"]["icon"]} />
+        <h5>{formatDate(forecast[2]["date"])}</h5>
+        <img className="forecastWeatherIcon" src={forecast[2]["day"]["condition"]["icon"]} />
         {isCelsius ?
           <div className="forecastTemps">
             <p>{dayAfterLowestC}°C</p>

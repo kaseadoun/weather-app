@@ -1,3 +1,5 @@
+import { formatDate } from "../../utils/formateDate";
+
 const CurrentWeather = ({ currentWeather, forecast, isCelsius }) => {
     const currentC = Math.round(currentWeather["temp_c"]);
     const currentF = Math.round(currentWeather["temp_f"]);
@@ -8,10 +10,13 @@ const CurrentWeather = ({ currentWeather, forecast, isCelsius }) => {
 
     return (
         <div className="currentWeatherComponent">
-            <h3>Today - {forecast[0]["date"]}</h3>
+            <div className="currentWeatherHeader">
+                <h3>TODAY</h3>
+                <h3>{formatDate(forecast[0]["date"])}</h3>
+            </div>
             <div className="currentWeatherContainer">
                 <div className="currentTempAndIcon">
-                    <img className="weatherIcon" src={currentWeather.condition.icon} />
+                    <img className="currentWeatherIcon" src={currentWeather.condition.icon} />
                     <p id="currentTemp">
                         {isCelsius ? (
                             <>
@@ -27,13 +32,13 @@ const CurrentWeather = ({ currentWeather, forecast, isCelsius }) => {
                     </p>
                 </div>
                 {isCelsius &&
-                    <div>
+                    <div className="currentWeatherHighAndLow">
                         <p>Highest: {currentHighestC}°C</p>
                         <p>Lowest: {currentLowestC}°C</p>
                     </div>
                 }
                 {!isCelsius &&
-                    <div>
+                    <div className="currentWeatherHighAndLow">
                         <p>Highest: {currentHighestF}°F</p>
                         <p>Lowest: {currentLowestF}°F</p>
                     </div>

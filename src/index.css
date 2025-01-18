@@ -96,6 +96,12 @@ header {
 }
 
 /* -------------------- WEATHER CARD */
+.weatherCardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
 .weatherCardHeader {
     display: flex;
     justify-content: space-between;
@@ -109,23 +115,86 @@ header {
     font-size: 20px;
 }
 
+.currentAndForecast {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
 
 /* -------------------- CURRENT WEATHER COMPONENT */
+.currentWeatherComponent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+.currentWeatherHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+}
+.currentWeatherHighAndLow {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.currentWeatherContainer {
+    width: 100%;
+}
 .currentTempAndIcon {
     display: flex;
-    margin-right: 30px;
+    justify-content: center;
+}
+.currentWeatherIcon {
+    min-width: 100px;
+    min-height: 100px;
 }
 #currentTemp {
     position: relative;
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 500;
 }
 .currentMetric {
     position: absolute;
-    top: 100;
     font-size: 20px;
 }
 
+/* -------------------- FORECAST */
+.forecastContainer {
+    display: flex;
+    justify-content: space-between;
+}
+.forecast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.forecastWeatherIcon {
+    width: 60px;
+    height: 60px;
+}
+.forecastTemps {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Large phones */
+@media only screen and (min-width: 480px) {}
+
+/* Tablets */
+@media only screen and (min-width: 768px) {}
+
+/* Smaller desktop views */
+@media only screen and (min-width: 1024px) {}
+
+/* Desktops */
+@media only screen and (min-width: 1280px) {}
 
 /* .mainContainer {
     display: flex;
