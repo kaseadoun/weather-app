@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faX } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faX);
+
 const SearchBar = ({ setLoading, setLocation, setCurrentWeather, setForecast, setChartData }) => {
   const [search, setSearch] = useState<string>('');
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -120,6 +126,11 @@ const SearchBar = ({ setLoading, setLocation, setCurrentWeather, setForecast, se
           autoComplete="off"
           required
         />
+        {isFocused === true &&
+          <button onClick={handleOnBlur} id="searchBarClearButton">
+            <FontAwesomeIcon icon="x" />
+          </button>
+        }
         <button
           id="searchButton"
           type="submit"
