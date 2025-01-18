@@ -2,8 +2,17 @@ import { useState, useEffect } from 'react'
 import CurrentWeather from "./CurrentWeather";
 import Forecast from "./Forecast";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTemperatureLow, faTemperatureHigh } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faTemperatureLow, faTemperatureHigh);
+
 const WeatherCard = ({ location, currentWeather, forecast }) => {
   const [isCelsius, setIsCelsius] = useState<boolean>(true);
+
+  const tempHighIcon = <FontAwesomeIcon className="fa-icon" icon="temperature-high" />
+  const tempLowIcon = <FontAwesomeIcon className="fa-icon" icon="temperature-low" />
 
   useEffect(() => {
 
@@ -36,10 +45,14 @@ const WeatherCard = ({ location, currentWeather, forecast }) => {
               currentWeather={currentWeather}
               forecast={forecast}
               isCelsius={isCelsius}
+              tempHighIcon={tempHighIcon}
+              tempLowIcon={tempLowIcon}
             />
             <Forecast
               forecast={forecast}
               isCelsius={isCelsius}
+              tempHighIcon={tempHighIcon}
+              tempLowIcon={tempLowIcon}
             />
           </>
         }

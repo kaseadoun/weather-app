@@ -1,6 +1,6 @@
 import { formatDate } from "../../utils/formateDate";
 
-const CurrentWeather = ({ currentWeather, forecast, isCelsius }) => {
+const CurrentWeather = ({ currentWeather, forecast, isCelsius, tempHighIcon, tempLowIcon }) => {
     const currentC = Math.round(currentWeather["temp_c"]);
     const currentF = Math.round(currentWeather["temp_f"]);
     const currentHighestC = Math.round(forecast[0]["day"]["maxtemp_c"]);
@@ -33,14 +33,14 @@ const CurrentWeather = ({ currentWeather, forecast, isCelsius }) => {
                 </div>
                 {isCelsius &&
                     <div className="currentWeatherHighAndLow">
-                        <p>Highest: {currentHighestC}°C</p>
-                        <p>Lowest: {currentLowestC}°C</p>
+                        <p>{tempHighIcon} {currentHighestC}°C</p>
+                        <p>{tempLowIcon} {currentLowestC}°C</p>
                     </div>
                 }
                 {!isCelsius &&
                     <div className="currentWeatherHighAndLow">
-                        <p>Highest: {currentHighestF}°F</p>
-                        <p>Lowest: {currentLowestF}°F</p>
+                        <p>{tempHighIcon} {currentHighestF}°F</p>
+                        <p>{tempLowIcon} {currentLowestF}°F</p>
                     </div>
                 }
             </div>

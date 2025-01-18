@@ -1,6 +1,6 @@
 import { formatDate } from "../../utils/formateDate";
 
-const Forecast = ({ forecast, isCelsius }) => {
+const Forecast = ({ forecast, isCelsius, tempHighIcon, tempLowIcon  }) => {
   const nextDayHighestC = Math.round(forecast[1]["day"]["maxtemp_c"]);
   const nextDayHighestF = Math.round(forecast[1]["day"]["maxtemp_f"]);
   const nextDayLowestC = Math.round(forecast[1]["day"]["mintemp_c"]);
@@ -18,12 +18,12 @@ const Forecast = ({ forecast, isCelsius }) => {
         <img className="forecastWeatherIcon" src={forecast[1]["day"]["condition"]["icon"]} />
         {isCelsius ?
           <div className="forecastTemps">
-            <p>{nextDayLowestC}°C</p>
-            <p>{nextDayHighestC}°C</p>
+            <p>{tempLowIcon} {nextDayLowestC}°C</p>
+            <p>{tempHighIcon} {nextDayHighestC}°C</p>
           </div> :
           <div className="forecastTemps">
-            <p>{nextDayLowestF}°F</p>
-            <p>{nextDayHighestF}°F</p>
+            <p>{tempLowIcon} {nextDayLowestF}°F</p>
+            <p>{tempHighIcon} {nextDayHighestF}°F</p>
           </div>
         }
       </div>
@@ -33,12 +33,12 @@ const Forecast = ({ forecast, isCelsius }) => {
         <img className="forecastWeatherIcon" src={forecast[2]["day"]["condition"]["icon"]} />
         {isCelsius ?
           <div className="forecastTemps">
-            <p>{dayAfterLowestC}°C</p>
-            <p>{dayAfterHighestC}°C</p>
+            <p>{tempLowIcon} {dayAfterLowestC}°C</p>
+            <p>{tempHighIcon} {dayAfterHighestC}°C</p>
           </div> :
           <div className="forecastTemps">
-            <p>{dayAfterLowestF}°F</p>
-            <p>{dayAfterHighestF}°F</p>
+            <p>{tempLowIcon} {dayAfterLowestF}°F</p>
+            <p>{tempHighIcon} {dayAfterHighestF}°F</p>
           </div>
         }
       </div>
