@@ -69,7 +69,7 @@ function App() {
           />
           <PrecipitationChart chartData={chartData} location={location} />
         </div>) : (
-          <div>Empty</div>
+          <div>Please search for an existing city.</div>
         )
       }
     </div>
